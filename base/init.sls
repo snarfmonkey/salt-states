@@ -1,0 +1,2 @@
+include:
+  - oh-my-zsh
