@@ -1,7 +1,0 @@
-nodejs:
-  version: 5.x
-  humanname: Nodesource Nodejs 5.x Repo
-  repo: deb https://deb.nodesource.com/node_5.x
-  listfile: nodesource.list
-  keyid: '68576280'
-  key_url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
