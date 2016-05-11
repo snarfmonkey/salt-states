@@ -1,7 +1,6 @@
-install-stuff:
+base_packages:
   pkg.installed:
     - pkgs:
-      - iftop
-      - htop
       - git
-      - curl
+      - htop
+      - sysstat

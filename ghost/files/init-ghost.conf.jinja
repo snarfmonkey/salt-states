@@ -1,0 +1,16 @@
+# ghost
+
+description "ghost blog dealy"
+
+start on statup
+
+stop on shutdown
+
+respawn
+respawn limit 10 5
+setuid ghost
+
+script
+    cd /var/www/ghost
+    npm start --production
+end script
