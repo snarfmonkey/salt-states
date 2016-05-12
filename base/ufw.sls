@@ -1,4 +1,4 @@
-{% set allowed_tcp_ports salt[pillar.get]('allowed_tcp_ports', []) -%}
+{% set allowed_tcp_ports salt['pillar.get']('allowed_tcp_ports', []) -%}
 include:
   - base.sshd
 
