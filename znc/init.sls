@@ -17,8 +17,13 @@ znc_conf:
 
 znc_init:
   file.managed:
+{%- if grains['init'] == 'systemd' %}
+    - name: /lib/systemd/system/znc.service
+    - source: salt://znc/files/systemd-znc.service.jinja
+{%- else %}
     - name: /etc/init/znc.conf
     - source: salt://znc/files/init-znc.conf.jinja
+{%- endif %}
     - template: jinja
     - require: [user: znc_user]
 

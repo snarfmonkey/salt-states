@@ -1,0 +1,16 @@
+[Unit]
+Description=ZNC IRC Bouncer
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/znc
+User=znc
+Group=znc
+ExecStart=/usr/bin/znc --datadir=/home/znc/.znc -f
+
+Restart=on-failure
+SyslogIdentifier=ZNC
+
+[Install]
+WantedBy=multi-user.target

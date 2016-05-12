@@ -1,0 +1,17 @@
+[Unit]
+Description=Ghost Blawg
+After=network.target
+
+[Service]
+Type=forking
+LimitNOFILE=4096
+WorkingDirectory=/var/www/ghost
+User=ghost
+Group=ghost
+ExecStart=/usr/bin/npm start --production
+ExecStop=/usr/bin/npm stop --production
+Restart=always
+SyslogIdentifier=Ghost
+
+[Install]
+WantedBy=multi-user.target

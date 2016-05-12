@@ -1,0 +1,18 @@
+[Unit]
+Description=Caddy HTTP Server
+After=network.target
+
+[Service]
+LimitNOFILE=4096
+Type=simple
+WorkingDirectory=/home/caddy
+Environment=STNORESTART=yes
+User=caddy
+Group=caddy
+ExecStart=/home/caddy/caddy -agree
+
+Restart=on-failure
+SyslogIdentifier=Caddy
+
+[Install]
+WantedBy=multi-user.target

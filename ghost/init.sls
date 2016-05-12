@@ -49,8 +49,13 @@ ghost_config_js:
 
 ghost_init:
   file.managed:
+{%- if grains['init'] == 'systemd' %}
+    - name: /lib/systemd/system/ghost.service
+    - source: salt://ghost/files/systemd-ghost.service.jinja
+{%- else %}
     - name: /etc/init/ghost
     - source: salt://ghost/files/init-ghost.conf.jinja
+{%- endif %}
     - template: jinja
     - require: [file: ghost_config_js]
 
@@ -61,20 +66,3 @@ ghost_run:
     - require:
       - file: ghost_init
     - watch: [file: ghost_config_js]
-
-ghost_nginx:
-  pkg.installed:
-    - name: nginx
-
-ghost_nginx_config:
-  file.managed:
-    - name: /etc/nginx/sites-available/ghost
-    - source: salt://ghost/files/nginx-ghost.jinja
-    - template: jinja
-    - require: [pkg: ghost_nginx]
-
-ghost_nginx_enabled:
-  file.symlink:
-    - name: /etc/nginx/sites-enabled/ghost
-    - target: /etc/nginx/sites-available/ghost
-    - require: [file: ghost_nginx_config]
