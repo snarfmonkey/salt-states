@@ -9,7 +9,7 @@ ufw_package:
 ufw_rules:
   cmd.run:
     - name: ufw allow proto tcp from any to any port {% for port in allowed_tcp_ports -%} {{ port }} {%- if not loop.last %},{% endif %}{% endfor %}
-    - require: [sls: sshd]
+    - require: [sls: base.sshd]
 
 ufw_enable:
   cmd.run:
